@@ -1,16 +1,9 @@
 {
   "name": "@rolster/rollup",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "type": "module",
   "description": "Package containing the basic definitions for handling data types.",
   "license": "MIT",
-  "exports": {
-    ".": {
-      "types": "./index.d.ts",
-      "import": "./index.js",
-      "require": "./index.cjs.js"
-    }
-  },
   "author": "Rolster Technology <rolster.developments@gmail.com>",
   "contributors": [
     {
@@ -18,6 +11,13 @@
       "email": "ing.dacastillop@gmail.com"
     }
   ],
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js",
+      "require": "./index.cjs.js"
+    }
+  },
   "files": [
     "index.cjs.js",
     "index.cjs.js.map",
@@ -27,6 +27,7 @@
     "index.d.ts"
   ],
   "scripts": {
+    "prettier": "prettier --write \"*.{ts,js}\"",
     "build": "rollup -c rollup.config.js",
     "prepublishOnly": "npm run build"
   },
@@ -37,7 +38,8 @@
     "rollup": "^4.59.0"
   },
   "devDependencies": {
-    "@rollup/plugin-json": "^6.1.0"
+    "@rollup/plugin-json": "^6.1.0",
+    "prettier": "^3.8.1"
   },
   "repository": {
     "type": "git",
