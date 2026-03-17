@@ -1,6 +1,6 @@
 {
   "name": "@rolster/rollup",
-  "version": "1.0.11",
+  "version": "1.1.0",
   "type": "module",
   "description": "Package containing the basic definitions for handling data types.",
   "license": "MIT",
@@ -11,11 +11,17 @@
       "email": "ing.dacastillop@gmail.com"
     }
   ],
+  "types": "./index.d.ts",
+  "main": "./index.cjs.js",
+  "module": "./index.es.js",
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "import": "./index.js",
-      "require": "./index.cjs.js"
+      "node": {
+        "require": "./index.cjs.js",
+        "import": "./index.es.js"
+      },
+      "import": "./index.es.js"
     }
   },
   "files": [
@@ -23,12 +29,11 @@
     "index.cjs.js.map",
     "index.es.js",
     "index.es.js.map",
-    "index.js",
     "index.d.ts"
   ],
   "scripts": {
     "prettier": "prettier --write \"*.{ts,js}\"",
-    "build": "rollup -c rollup.config.js",
+    "build": "rollup -c rollup.config.mjs",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
@@ -43,7 +48,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rolster-developments/typescript-rollup.git"
+    "url": "git+https://github.com/rolster-developments/typescript-rollup.git"
   },
   "keywords": [
     "rolster",
