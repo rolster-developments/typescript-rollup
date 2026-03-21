@@ -13,10 +13,11 @@ interface RolsterOptions {
   packages?: string[];
   path?: string;
   plugins?: Plugin[];
-  pluginOptions?: {
+  pluginsOptions?: {
     nodeResolve?: RollupNodeResolveOptions;
     typescript?: Partial<RolsterTypescriptOptions>;
   };
+  requiredEsm?: boolean;
 }
 
 interface RollupOptions {

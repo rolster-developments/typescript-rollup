@@ -7,13 +7,13 @@ export default [
     input: ['index.js'],
     output: [
       {
-        file: 'index.cjs.js',
+        file: 'index.cjs',
         format: 'cjs',
         sourcemap: true,
         inlineDynamicImports: true
       },
       {
-        file: 'index.es.js',
+        file: 'index.esm.js',
         format: 'es',
         sourcemap: true,
         inlineDynamicImports: true

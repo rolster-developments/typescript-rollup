@@ -3,7 +3,7 @@
 node_modules
 dist
 server
-index.cjs.js
-index.cjs.js.map
-index.es.js
-index.es.js.map
+index.cjs
+index.cjs.map
+index.esm.js
+index.esm.js.map

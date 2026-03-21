@@ -6,25 +6,38 @@ function rollupInput(entryFile, path) {
   return [`${path}/esm/${entryFile}.js`];
 }
 
-function rollupOutput(entryFile, path) {
-  return [
+function rollupOutput(entryFile, path, requiredEsm) {
+  const outputs = [
     {
-      file: `${path}/cjs/${entryFile}.js`,
+      file: `${path}/cjs/${entryFile}.cjs`,
       format: 'cjs',
-      sourcemap: true,
-      inlineDynamicImports: true
-    },
-    {
-      file: `${path}/es/${entryFile}.js`,
-      format: 'es',
       sourcemap: true,
       inlineDynamicImports: true
     }
   ];
+
+  if (requiredEsm) {
+    outputs.push({
+      file: `${path}/es/${entryFile}.mjs`,
+      format: 'es',
+      sourcemap: true,
+      inlineDynamicImports: true
+    });
+  }
+
+  return outputs;
 }
 
 export default function rolster(options) {
-  const { entryFiles, packages, path, plugins, pluginsOptions } = options;
+  const {
+    entryFiles,
+    packages,
+    path,
+    plugins,
+    pluginsOptions,
+    requiredEsm
+  } =
+    options;
 
   const rolsterTypescript = {
     tsconfig: './tsconfig.app.json',
@@ -40,11 +53,13 @@ export default function rolster(options) {
     ...(plugins || [])
   ];
 
+  const rollupPath = path || 'dist';
+
   return entryFiles.map((entryFile) => {
     return {
       external: packages || [],
-      input: rollupInput(entryFile, path || 'dist'),
-      output: rollupOutput(entryFile, path || 'dist'),
+      input: rollupInput(entryFile, rollupPath),
+      output: rollupOutput(entryFile, rollupPath, requiredEsm),
       plugins: rolsterPlugins
     };
   });
