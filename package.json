@@ -34,7 +34,9 @@
   "scripts": {
     "prettier": "prettier --write \"*.{ts,js}\"",
     "build": "rollup -c rollup.config.mjs",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@rollup/plugin-commonjs": "^29.0.3",
@@ -43,8 +45,13 @@
     "rollup": "^4.61.1"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@rollup/plugin-json": "^6.1.0",
-    "prettier": "^3.8.1"
+    "eslint": "^10.7.0",
+    "eslint-plugin-perfectionist": "^5.10.0",
+    "eslint-plugin-simple-import-sort": "^13.0.0",
+    "prettier": "^3.8.1",
+    "typescript-eslint": "^8.64.0"
   },
   "repository": {
     "type": "git",
