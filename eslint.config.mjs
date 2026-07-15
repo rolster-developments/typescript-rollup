@@ -6,12 +6,12 @@ import tseslint from 'typescript-eslint';
 export default tseslint.config(
   {
     ignores: [
-      'dist/**',
-      'node_modules/**',
-      '**/*.test.ts',
-      '**/*.test.tsx',
-      'index.cjs',
-      'index.esm.js'
+      '**/dist/**',
+      '**/node_modules/**',
+      '**/*.js',
+      '**/*.cjs',
+      '**/*.spec.ts',
+      '**/*.spec.tsx'
     ]
   },
   js.configs.recommended,
