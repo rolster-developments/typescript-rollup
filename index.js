@@ -29,14 +29,7 @@ function rollupOutput(entryFile, path, requiredEsm) {
 }
 
 export default function rolster(options) {
-  const {
-    entryFiles,
-    packages,
-    path,
-    plugins,
-    pluginsOptions,
-    requiredEsm
-  } =
+  const { entryFiles, packages, path, plugins, pluginsOptions, requiredEsm } =
     options;
 
   const rolsterTypescript = {

@@ -32,7 +32,7 @@
     "index.d.ts"
   ],
   "scripts": {
-    "prettier": "prettier --write \"*.{ts,js}\"",
+    "prettier": "prettier --write .",
     "build": "rollup -c rollup.config.mjs",
     "prepublishOnly": "npm run build",
     "lint": "eslint .",
