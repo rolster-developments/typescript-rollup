@@ -37,10 +37,10 @@
   ],
   "scripts": {
     "prettier": "prettier --write .",
-    "build": "rollup -c rollup.config.mjs",
-    "prepublishOnly": "npm run build",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "build": "rollup -c rollup.config.mjs",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@rollup/plugin-commonjs": "^29.0.3",
