@@ -1,6 +1,6 @@
 {
   "name": "@rolster/rollup",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "type": "module",
   "description": "Package containing the basic definitions for handling data types.",
   "license": "MIT",
@@ -12,6 +12,9 @@
     }
   ],
   "types": "./index.d.ts",
+  "bin": {
+    "rolster-rollup": "./bin/rolster-rollup.js"
+  },
   "main": "./index.cjs",
   "module": "./index.esm.js",
   "exports": {
@@ -25,6 +28,7 @@
     }
   },
   "files": [
+    "bin/rolster-rollup.js",
     "index.cjs",
     "index.cjs.map",
     "index.esm.js",

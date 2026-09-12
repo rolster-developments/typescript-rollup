@@ -13,8 +13,10 @@ npm i @rolster/rollup -D
 
 Rollup and the `@rollup/plugin-*` plugins it needs (`commonjs`, `node-resolve`,
 `typescript`) are already bundled as dependencies, so you don't have to install
-them yourself. In the consumer project you only need `typescript` (to run `tsc`)
-and, for the recommended `clean` script, `rimraf`.
+them yourself. The package also exposes the `rolster-rollup` command, which runs
+the bundled Rollup CLI, so consumer projects never need to depend on `rollup`
+directly. In the consumer project you only need `typescript` (to run `tsc`) and,
+for the recommended `clean` script, `rimraf`.
 
 ## How it works
 
@@ -22,7 +24,7 @@ The package exports a single function, `rolster(options)`, that returns an array
 of Rollup configurations. A Rolster build runs in **two steps**:
 
 1. **`tsc`** compiles `src/**/*.ts` into `dist/esm/` (JavaScript + `.d.ts`).
-2. **`rollup`** takes each `dist/esm/<entry>.js` and bundles it into
+2. **`rolster-rollup`** takes each `dist/esm/<entry>.js` and bundles it into
    `dist/cjs/<entry>.cjs` and — when `requiredEsm` is enabled —
    `dist/es/<entry>.mjs`.
 
@@ -48,11 +50,16 @@ export default rolster({
 {
   "scripts": {
     "clean": "rimraf ./dist",
-    "build": "npm run clean && tsc -p tsconfig.app.json && rollup -c rollup.config.mjs",
+    "build": "npm run clean && tsc -p tsconfig.app.json && rolster-rollup",
     "prepublishOnly": "npm run build"
   }
 }
 ```
+
+`rolster-rollup` runs the Rollup CLI bundled with this package using
+`rollup.config.mjs` from the current directory. Any extra flag is forwarded to
+Rollup (for example `rolster-rollup --watch`), and passing your own `-c` replaces
+the default config file.
 
 ### 3. `tsconfig.app.json`
 
