@@ -111,6 +111,10 @@ Point the published fields at the generated output:
 
 **Returns:** `RollupOptions[]` — one configuration per entry in `entryFiles`.
 
+The option types (`RolsterOptions`, `RolsterTypescriptOptions`, `RollupOptions`)
+are declared in `index.d.ts` but not exported, so they cannot be imported: type
+the options object inline or rely on inference from the `rolster(...)` call.
+
 ### TypeScript plugin defaults
 
 Each config applies these defaults (override via `pluginsOptions.typescript`):
