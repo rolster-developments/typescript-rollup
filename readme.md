@@ -135,4 +135,4 @@ export default rolster({
 
 ## Contributing
 
-- Daniel Andrés Castillo Pedroza :sparkles:
+:sparkles: Daniel Andrés Castillo Pedroza
