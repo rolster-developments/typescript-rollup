@@ -19,10 +19,6 @@ export default [
         inlineDynamicImports: true
       }
     ],
-    external: [
-      '@rollup/plugin-typescript',
-      '@rollup/plugin-commonjs',
-      '@rollup/plugin-node-resolve'
-    ]
+    external: ['@rollup/plugin-commonjs', '@rollup/plugin-node-resolve']
   }
 ];

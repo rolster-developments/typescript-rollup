@@ -2,8 +2,7 @@
 
 Shared [Rollup](https://rollupjs.org) configuration builder for Rolster TypeScript
 packages. It standardizes the build pipeline across every `@rolster/*` project,
-producing **CommonJS**, **ESM** and **type declarations** from a single, small
-config file.
+producing **CommonJS** and **ESM** bundles from a single, small config file.
 
 ## Installation
 
@@ -11,8 +10,8 @@ config file.
 npm i @rolster/rollup -D
 ```
 
-Rollup and the `@rollup/plugin-*` plugins it needs (`commonjs`, `node-resolve`,
-`typescript`) are already bundled as dependencies, so you don't have to install
+Rollup and the `@rollup/plugin-*` plugins it needs (`commonjs`, `node-resolve`)
+are already bundled as dependencies, so you don't have to install
 them yourself. The package also exposes the `rolster-rollup` command, which runs
 the bundled Rollup CLI, so consumer projects never need to depend on `rollup`
 directly. In the consumer project you only need `typescript` (to run `tsc`) and,
@@ -99,34 +98,20 @@ Point the published fields at the generated output:
 
 ## API — `rolster(options)`
 
-| Option                       | Type                                | Default      | Description                                                                                                |
-| ---------------------------- | ----------------------------------- | ------------ | ---------------------------------------------------------------------------------------------------------- |
-| `entryFiles`                 | `string[]`                          | **required** | Entry names (without extension). Each is read from `<path>/esm/<entry>.js` and produces one Rollup config. |
-| `requiredEsm`                | `boolean`                           | `false`      | When `true`, also emits an ESM bundle at `<path>/es/<entry>.mjs` (besides the CJS one).                    |
-| `packages`                   | `string[]`                          | `[]`         | Packages marked as `external` (not bundled) — e.g. other `@rolster/*` dependencies.                        |
-| `path`                       | `string`                            | `'dist'`     | Base folder for both input and output.                                                                     |
-| `plugins`                    | `Plugin[]`                          | `[]`         | Extra Rollup plugins appended after the Rolster defaults.                                                  |
-| `pluginsOptions.nodeResolve` | `RollupNodeResolveOptions`          | —            | Options forwarded to `@rollup/plugin-node-resolve`.                                                        |
-| `pluginsOptions.typescript`  | `Partial<RolsterTypescriptOptions>` | see below    | Overrides for `@rollup/plugin-typescript`.                                                                 |
+| Option                       | Type                       | Default      | Description                                                                                                |
+| ---------------------------- | -------------------------- | ------------ | ---------------------------------------------------------------------------------------------------------- |
+| `entryFiles`                 | `string[]`                 | **required** | Entry names (without extension). Each is read from `<path>/esm/<entry>.js` and produces one Rollup config. |
+| `requiredEsm`                | `boolean`                  | `false`      | When `true`, also emits an ESM bundle at `<path>/es/<entry>.mjs` (besides the CJS one).                    |
+| `packages`                   | `string[]`                 | `[]`         | Packages marked as `external` (not bundled) — e.g. other `@rolster/*` dependencies.                        |
+| `path`                       | `string`                   | `'dist'`     | Base folder for both input and output.                                                                     |
+| `plugins`                    | `Plugin[]`                 | `[]`         | Extra Rollup plugins appended after the Rolster defaults.                                                  |
+| `pluginsOptions.nodeResolve` | `RollupNodeResolveOptions` | —            | Options forwarded to `@rollup/plugin-node-resolve`.                                                        |
 
 **Returns:** `RollupOptions[]` — one configuration per entry in `entryFiles`.
 
-The option types (`RolsterOptions`, `RolsterTypescriptOptions`, `RollupOptions`)
+The option types (`RolsterOptions` and `RollupOptions`)
 are declared in `index.d.ts` but not exported, so they cannot be imported: type
 the options object inline or rely on inference from the `rolster(...)` call.
-
-### TypeScript plugin defaults
-
-Each config applies these defaults (override via `pluginsOptions.typescript`):
-
-```js
-{
-  tsconfig: './tsconfig.app.json',
-  declaration: true,
-  declarationDir: 'dist',
-  include: ['node_modules/@rolster/types/index.d.ts']
-}
-```
 
 ### Generated output (per entry)
 
@@ -150,4 +135,4 @@ export default rolster({
 
 ## Contributing
 
-- Daniel Andrés Castillo Pedroza :rocket:
+- Daniel Andrés Castillo Pedroza :sparkles:

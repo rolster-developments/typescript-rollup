@@ -1,6 +1,5 @@
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
-import typescript from '@rollup/plugin-typescript';
 
 function rollupInput(entryFile, path) {
   return [`${path}/esm/${entryFile}.js`];
@@ -32,17 +31,9 @@ export default function rolster(options) {
   const { entryFiles, packages, path, plugins, pluginsOptions, requiredEsm } =
     options;
 
-  const rolsterTypescript = {
-    tsconfig: './tsconfig.app.json',
-    declaration: true,
-    declarationDir: 'dist',
-    include: ['node_modules/@rolster/types/index.d.ts']
-  };
-
   const rolsterPlugins = [
     commonjs(),
     resolve(pluginsOptions?.nodeResolve),
-    typescript({ ...rolsterTypescript, ...pluginsOptions?.typescript }),
     ...(plugins || [])
   ];
 
